@@ -12,6 +12,7 @@ export default function RegistrationonScreen() {
 
 
     const handleReview = () => {
+        
         if(!userName || !email || !phoneNumber || !confirmPassword){
             Alert.alert('Error', 'Please fill in all fields');
             return;
@@ -26,14 +27,14 @@ export default function RegistrationonScreen() {
         router.push({
             pathname: '/review',
             params: {userName,email,phoneNumber}}
-        );};
+        );console.log('Validation passed: opening review');};
 
 return (
     <View style={styles.container}>
         <Text style={styles.title}>Create Your Account</Text>
         <TextInput style={styles.input} placeholder="Username" value={userName} onChangeText={setUserName}/>
         <TextInput style={styles.input} placeholder="Email" keyboardType="email-address" value={email} onChangeText={setEmail}/>
-        <TextInput style={styles.input} placeholder="Phone Number" keyboardTYpe="phone-pad" value={phoneNumber} onChangeTExt={setPhoneNumber}/>
+        <TextInput style={styles.input} placeholder="Phone Number" keyboardTYpe="phone-pad" value={phoneNumber} onChangeText={setPhoneNumber}/>
         <TextInput style={styles.input} placeholder="Password" secureTextEntry value ={password} onChangeText={setPassword}/>
         <TextInput style={styles.input} placeholder="Confirm Password" secureTextEntry value={confirmPassword} onChangeText={setConfirmPassword}/>
     
