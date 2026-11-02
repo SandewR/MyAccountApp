@@ -1,6 +1,6 @@
-import {useRouter} from 'expo-router';
-import {userState} from 'react';
-import {Alert, Button, StyleSheet, Text, TextInput, View} from 'react-native';
+import { useRouter } from 'expo-router';
+import { useState } from 'react';
+import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function RegistrationonScreen() {
     const router = useRouter();
