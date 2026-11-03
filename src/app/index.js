@@ -9,6 +9,7 @@ export default function RegistrationonScreen() {
     const[phoneNumber, setPhoneNumber] = useState('');
     const[password, setPassword] = useState('');
     const[confirmPassword, setConfirmPassword] = useState('');
+    const [yearOfBirth, setYearOfBirth] = useState('');
 
 
     const handleReview = () => {
@@ -24,9 +25,27 @@ export default function RegistrationonScreen() {
             return;
         }
 
+  const currentYear = new Date().getFullYear();
+  const birthYear = Number(yearOfBirth);
+
+  if (
+    !/^\d{4}$/.test(yearOfBirth) ||
+    birthYear < 1900 ||
+    birthYear > currentYear
+  ) {
+    Alert.alert(
+      'Error',
+      `Please enter a valid birth year between 1900 and ${currentYear}`
+    );
+    return;
+  }
+
+  const age = currentYear - birthYear;
+
+
         router.push({
             pathname: '/review',
-            params: {userName,email,phoneNumber}}
+            params: {userName,email,phoneNumber,age}}
         );console.log('Validation passed: opening review');};
 
 return (
@@ -37,6 +56,7 @@ return (
         <TextInput style={styles.input} placeholder="Phone Number" keyboardTYpe="phone-pad" value={phoneNumber} onChangeText={setPhoneNumber}/>
         <TextInput style={styles.input} placeholder="Password" secureTextEntry value ={password} onChangeText={setPassword}/>
         <TextInput style={styles.input} placeholder="Confirm Password" secureTextEntry value={confirmPassword} onChangeText={setConfirmPassword}/>
+        <TextInput style={styles.input} placeholder="Year of Birth" keyboardType="number-pad" maxLength={4} value={yearOfBirth} onChangeText={setYearOfBirth}/>
     
         <Button title="Review Details" onPress={handleReview} />
         </View>
